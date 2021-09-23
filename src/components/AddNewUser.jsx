@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import CustomInput from "./UI/input/CustomInput";
 import CustomButton from "./UI/buttom/CustomButton";
 import CustomSelect from "./UI/select/CustomSelect";
@@ -15,7 +16,7 @@ const AddNewUser = ({create}) => {
   const addNewUser = (event) => {
     event.preventDefault();
     const newUser = {
-      ...user, _id: Date.now(), picture: 'http://placehold.it/32x32'
+      ...user, _id: uuidv4(), picture: 'http://placehold.it/32x32'
     };
     create(newUser);
     setUser({
