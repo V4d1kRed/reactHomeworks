@@ -1,13 +1,24 @@
 import React from 'react';
 import UserItem from "./UserItem";
 
-const UserList = (props) => {
+const UserList = ({users}) => {
+  if (!users.length) {
+    return (
+      <div className="notice">
+        <div className="container">
+          <div className="notice__body">
+            <h3 style={{textAlign: 'center', color: 'grey'}}>User list is empty</h3>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="users">
       <div className="container">
         <div className="users__body">
-          {props.users.map(user => <UserItem user={user} key={user._id}/>)}
+          {users.map(user => <UserItem user={user} key={user._id}/>)}
         </div>
       </div>
     </div>

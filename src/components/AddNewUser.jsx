@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import CustomInput from "./UI/input/CustomInput";
-import CustomButton from "./UI/buttom/CustomButton";
+import CustomButton from "./UI/button/CustomButton";
 import CustomSelect from "./UI/select/CustomSelect";
 
 const AddNewUser = ({create}) => {
@@ -53,7 +53,7 @@ const AddNewUser = ({create}) => {
             type="number"
             value={user.balance}
             placeholder="Enter balance"/>
-          <CustomButton onClick={addNewUser}>Add</CustomButton>
+          <CustomButton onClick={addNewUser} style={{backgroundColor: 'lightgreen'}}>Add</CustomButton>
         </div>
       </div>
     </form>
