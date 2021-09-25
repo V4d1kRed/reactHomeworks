@@ -121,6 +121,7 @@ input::placeholder {
     background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
     visibility: hidden;
+    z-index: 5;
     transition: all 0.2s ease-in-out;
 }
 
@@ -135,16 +136,33 @@ input::placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 5;
 }
 
 .modal__content {
     min-height: 60px;
     z-index: 10;
     position: relative;
-    padding: 10px;
+    padding: 20px;
     width: 100%;
     max-width: 600px;
     background-color: white;
+    display: flex;
+    row-gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.modal__title {
+    font-size: 22px;
+}
+
+.modal__info {
+    font-size: 16px;
+}
+
+.modal__info span {
+    font-weight: 600;
 }
 
 .modal__close {
