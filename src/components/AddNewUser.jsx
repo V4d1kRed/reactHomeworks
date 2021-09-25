@@ -16,7 +16,7 @@ const AddNewUser = ({create}) => {
   const addNewUser = (event) => {
     event.preventDefault();
     const newUser = {
-      ...user, _id: uuidv4(), picture: 'http://placehold.it/32x32'
+      ...user, guid: uuidv4(), picture: 'http://placehold.it/32x32'
     };
     create(newUser);
     setUser({
