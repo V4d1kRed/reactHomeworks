@@ -14,6 +14,10 @@ const App = () => {
     age: ''
   });
 
+  const [isActive, setIsActive] = useState(false);
+
+  const [userId, setUserId] = useState('');
+
   const createUser = (newUser) => {
     setUsers([...users, newUser]);
   };
@@ -27,21 +31,33 @@ const App = () => {
 
   const searchUserByNameAndSortedByAge = useMemo(() => {
     if (filter.age === 'Descending') {
-      return [...searchUserByName].sort((a, b) => a.age - b.age);
+      return [...searchUserByName].sort((a, b) => b.age - a.age);
     }
     if (filter.age === 'Ascending') {
-      return [...searchUserByName].sort((a, b) => b.age - a.age);
+      return [...searchUserByName].sort((a, b) => a.age - b.age);
     }
     return searchUserByName;
   }, [filter.age, searchUserByName]);
+
+  const showUserInformation = (event) => {
+    if (event.target.classList.value === 'user') {
+      setUserId(event.target.dataset.id);
+      document.body.classList.add('lock');
+      setIsActive(true);
+    }
+  };
+
+  const getUserById = (id) => {
+    return searchUserByNameAndSortedByAge.find(user => user.guid === id);
+  };
 
   return (
     <div className="App">
       <div className="wrapper">
         <Header filter={filter} setFilter={setFilter}/>
         <AddNewUser create={createUser}/>
-        <UserList users={searchUserByNameAndSortedByAge}/>
-        <ModalWindow/>
+        <UserList users={searchUserByNameAndSortedByAge} onClick={showUserInformation}/>
+        <ModalWindow user={getUserById(userId)} visible={isActive} setVisible={setIsActive}/>
       </div>
     </div>
   );
