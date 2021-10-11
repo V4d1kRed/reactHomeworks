@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import {DataProvider} from "./components/DataContext";
 
 ReactDOM.render(
-  <App/>,
+  <DataProvider>
+    <App/>
+  </DataProvider>,
   document.getElementById('root')
 );
