@@ -51,7 +51,8 @@ export const participantsReducer = (state = initialState, action) => {
       return {
         ...state,
         searchParticipants: state.participants.filter(participant => {
-          return participant.firstName.toLowerCase().includes(state.searchValue.toLowerCase());
+          return participant.firstName.toLowerCase().includes(state.searchValue.toLowerCase())
+            || participant.id.toString().includes(state.searchValue.toString())
         })
       };
     default:

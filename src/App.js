@@ -8,6 +8,7 @@ import ParticipantsList from "./components/participants/participantsList/Partici
 import {Provider} from "react-redux";
 import Modal from "./components/modal/Modal";
 import {store} from "./store";
+import Winner from "./components/winner/Winner";
 
 function App() {
   return (
@@ -21,8 +22,9 @@ function App() {
                 <ParticipantsList/>
               </Box>
               <Box className="app__container">
-                <RegistrationForm/>
                 <Modal></Modal>
+                <RegistrationForm/>
+                <Winner/>
               </Box>
             </Box>
           </Container>
