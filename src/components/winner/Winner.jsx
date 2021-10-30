@@ -1,57 +1,34 @@
-import React, {Fragment, useEffect, useState} from 'react';
-import {Box, Button, Typography} from "@mui/material";
+import React from 'react';
+import {Box, Button} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
-import {setAmountParticipantsAction, setWinningParticipantAction} from "../../actions/participantsActions";
-import {msToTime} from "../../scripts";
+import {useHistory, useParams} from "react-router-dom";
+import {setStatusAction} from "../../store/actions/competitionsActions";
 
 const Winner = () => {
-  const [showWinningParticipant, setShowWinningParticipant] = useState(false);
+  const history = useHistory();
   const dispatch = useDispatch();
-  const {participants, amountParticipants, winningParticipant} = useSelector(state => state.participants);
+  const {competitionId} = useParams();
+  const {participants} = useSelector(state => state.participants);
 
-  useEffect(() => {
-    dispatch(setAmountParticipantsAction());
-    dispatch(setWinningParticipantAction());
-  }, [dispatch, participants]);
+  const amountParticipants = participants.filter(participant => participant.competitionId === +competitionId).length;
 
   const showWinner = () => {
-    setShowWinningParticipant(true);
+    history.goBack();
+    dispatch(setStatusAction(+competitionId));
   };
 
   return (
     <Box className="winner">
-      {
-        showWinningParticipant && amountParticipants
-          ?
-          <Fragment>
-            <h2>The winner</h2>
-            <Typography component="p">
-              ID: <span style={{fontWeight: 'bold'}}>{winningParticipant.id}</span>
-            </Typography>
-            <Typography component="p">
-              First name: <span style={{fontWeight: 'bold'}}>{winningParticipant.firstName}</span>
-            </Typography>
-            <Typography component="p">
-              Second name: <span style={{fontWeight: 'bold'}}>{winningParticipant.secondName}</span>
-            </Typography>
-            <Typography component="p">
-              Time: <span style={{fontWeight: 'bold'}}>{msToTime(winningParticipant.time)}</span>
-            </Typography>
-          </Fragment>
-          :
-          <Fragment>
-            <h2 className="winner__title">Total participants: {amountParticipants}</h2>
-            <Button
-              fullWidth
-              color="success"
-              variant="contained"
-              disabled={amountParticipants ? false : true}
-              onClick={showWinner}
-            >
-              Show winner
-            </Button>
-          </Fragment>
-      }
+      <h2 className="winner__title">Total participants: {amountParticipants}</h2>
+      <Button
+        fullWidth
+        color="success"
+        variant="contained"
+        disabled={amountParticipants ? false : true}
+        onClick={showWinner}
+      >
+        Show winner
+      </Button>
     </Box>
   );
 };

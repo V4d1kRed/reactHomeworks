@@ -2,21 +2,25 @@ import {
   ADD_CURRENT_PARTICIPANT,
   ADD_PARTICIPANT,
   DELETE_PARTICIPANT,
-  SEARCH_PARTICIPANTS_BY_NAME_AND_ID, SET_AMOUNT_PARTICIPANTS, SET_SEARCH_VALUE, SET_WINNING_PARTICIPANT
+  SEARCH_PARTICIPANTS_BY_NAME_AND_ID,
+  SET_AMOUNT_PARTICIPANTS,
+  SET_SEARCH_VALUE,
+  SET_WINNING_PARTICIPANTS
 } from "../actions/participantsActions";
 
 export const initialState = {
   searchValue: '',
   amountParticipants: null,
-  winningParticipant: {},
   currentParticipant: {},
+  winningParticipants: [],
   searchParticipants: [],
   participants: [
-    {id: 543234, firstName: 'Vadik', secondName: 'Green', time: 36423},
-    {id: 781539, firstName: 'Oleg', secondName: 'Red', time: 91822},
-    {id: 123912, firstName: 'Nikita', secondName: 'Blue', time: 98132},
-    {id: 912317, firstName: 'Kolya', secondName: 'Yellow', time: 28433}
-  ]
+    {firstName: 'Vadik', secondName: 'Red', id: 973212, time: 314332, competitionId: 649025},
+    {firstName: 'Nikita', secondName: 'Blue', id: 242345, time: 42134, competitionId: 354123},
+    {firstName: 'Slavik', secondName: 'Green', id: 634234, time: 143232, competitionId: 354123},
+    {firstName: 'Oleg', secondName: 'Yellow', id: 586343, time: 76534, competitionId: 354123},
+    {firstName: 'Kolya', secondName: 'Brown', id: 6345814, time: 465734, competitionId: 649025},
+  ],
 };
 
 export const participantsReducer = (state = initialState, action) => {
@@ -42,10 +46,9 @@ export const participantsReducer = (state = initialState, action) => {
         ...state,
         searchValue: action.payload,
       };
-    case SET_WINNING_PARTICIPANT:
+    case SET_WINNING_PARTICIPANTS:
       return {
         ...state,
-        winningParticipant: [...state.participants].sort((a, b) => a.time - b.time)[0],
       };
     case SET_AMOUNT_PARTICIPANTS:
       return {...state, amountParticipants: state.participants.length}

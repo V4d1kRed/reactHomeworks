@@ -4,18 +4,19 @@ import * as yup from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {useDispatch} from "react-redux";
-import {addCurrentParticipantAction} from "../../actions/participantsActions";
-import {openModalAction} from "../../actions/modalActions";
+import {addCurrentParticipantAction} from "../../store/actions/participantsActions";
+import {openModalAction} from "../../store/actions/modalActions";
+import {useParams} from "react-router-dom";
 
 const schema = yup.object({
   firstName: yup
     .string()
     .required('First name is required field')
-    .matches(/^[a-zA-Z.\-_$@*!]{1,15}$/, 'First name should correct format'),
+    .matches(/^[a-zA-Z.\-_$@*!]{1,15}$/, 'First name should be correct format'),
   secondName: yup
     .string()
     .required('Second name is required field')
-    .matches(/^[a-zA-Z.\-_$@*!]{1,15}$/, 'Second name should correct format'),
+    .matches(/^[a-zA-Z.\-_$@*!]{1,15}$/, 'Second name should be correct format'),
 }).required();
 
 const RegistrationForm = () => {
@@ -25,10 +26,12 @@ const RegistrationForm = () => {
   });
 
   const dispatch = useDispatch();
+  const {competitionId} = useParams();
 
   const onSubmit = (data) => {
     const currentParticipant = {
       ...data,
+      competitionId: +competitionId,
       id: Math.floor(100000 + Math.random() * 900000),
     };
     dispatch(addCurrentParticipantAction(currentParticipant));

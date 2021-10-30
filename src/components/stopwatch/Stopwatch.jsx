@@ -2,7 +2,7 @@ import React from 'react';
 import {Box, Button, Typography} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import {msToTime} from "../../scripts";
-import {resetStopwatchAction, setIntervalIdAction, startStopwatchAction} from "../../actions/stopwatchActions";
+import {resetStopwatchAction, setIntervalIdAction, startStopwatchAction} from "../../store/actions/stopwatchActions";
 
 const Stopwatch = ({stateButtons, setStateButtons}) => {
   const dispatch = useDispatch();

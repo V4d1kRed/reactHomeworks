@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Card, CardActions, CardContent, Typography} from "@mui/material";
 import {useDispatch} from "react-redux";
-import {deleteParticipantAction} from "../../../actions/participantsActions";
+import {deleteParticipantAction} from "../../../store/actions/participantsActions";
 import {msToTime} from "../../../scripts";
 
 const ParticipantsItem = ({participant}) => {

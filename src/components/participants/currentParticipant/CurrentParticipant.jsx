@@ -2,9 +2,9 @@ import React from 'react';
 import {Box, Button, Typography} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
 import Stopwatch from "../../stopwatch/Stopwatch";
-import {closeModalAction} from "../../../actions/modalActions";
-import {addParticipantAction} from "../../../actions/participantsActions";
-import {resetStopwatchAction} from "../../../actions/stopwatchActions";
+import {closeModalAction} from "../../../store/actions/modalActions";
+import {addParticipantAction} from "../../../store/actions/participantsActions";
+import {resetStopwatchAction} from "../../../store/actions/stopwatchActions";
 
 const CurrentParticipant = ({stateButtons, setStateButtons, initialState}) => {
   const dispatch = useDispatch();

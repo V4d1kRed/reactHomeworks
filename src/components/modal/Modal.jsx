@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {closeModalAction} from "../../actions/modalActions";
-import {resetStopwatchAction} from "../../actions/stopwatchActions";
+import {closeModalAction} from "../../store/actions/modalActions";
+import {resetStopwatchAction} from "../../store/actions/stopwatchActions";
 import CurrentParticipant from "../participants/currentParticipant/CurrentParticipant";
 
 const Modal = () => {

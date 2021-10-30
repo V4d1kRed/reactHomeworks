@@ -1,35 +1,22 @@
 import React from 'react';
-import Wrapper from "./components/wrapper/Wrapper";
-import Container from "./components/container/Container";
-import {Box} from "@mui/material";
-import RegistrationForm from "./components/registrationForm/RegistrationForm";
-import Search from "./components/search/Search";
-import ParticipantsList from "./components/participants/participantsList/ParticipantsList";
 import {Provider} from "react-redux";
-import Modal from "./components/modal/Modal";
 import {store} from "./store";
-import Winner from "./components/winner/Winner";
+import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
+import Competitions from "./pages/Competitions";
+import Create from "./pages/Create";
+import Participants from "./pages/Participants";
 
 function App() {
   return (
     <Provider store={store}>
-      <Wrapper>
-        <Box className="app">
-          <Container>
-            <Box className="app__body">
-              <Box className="app__container">
-                <Search/>
-                <ParticipantsList/>
-              </Box>
-              <Box className="app__container">
-                <Modal></Modal>
-                <RegistrationForm/>
-                <Winner/>
-              </Box>
-            </Box>
-          </Container>
-        </Box>
-      </Wrapper>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" component={Competitions} exact/>
+          <Route path="/create" component={Create}/>
+          <Route path="/competition/:competitionId" component={Participants}/>
+          <Redirect to="/"/>
+        </Switch>
+      </BrowserRouter>
     </Provider>
   );
 }
