@@ -1,0 +1,26 @@
+li {
+    list-style: none;
+}
+
+.result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &__list {
+        li {
+            margin-bottom: 5px;
+
+            span {
+                margin-left: 5px;
+            }
+        }
+    }
+
+    &__winnerName {
+        display: inline-block;
+        font-size: 18px;
+        font-weight: 700;
+        min-width: 80px;
+    }
+}

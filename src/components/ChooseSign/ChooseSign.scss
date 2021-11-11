@@ -1,0 +1,14 @@
+.chooseSignContainer {
+	margin: 20px 0;
+
+	label {
+		font-weight: 700;
+		&:hover {
+			cursor: pointer;
+			color: rgb(85, 85, 85);
+		}
+	}
+	span {
+		margin: 0 10px;
+	}
+}
